@@ -18,7 +18,8 @@ pipeline
                     git branch: 'DevOpsBranch', url: 'https://github.com/Poonam-devops1993/mvn-web-application.git'
                 }
             }
-        }   stage('Build Project')
+          
+            stage('Build Project')
             {
                  steps()
                 {
@@ -42,6 +43,7 @@ pipeline
                     }
                        sh 'docker push poonam2019/dockerpipeline:${buildNumber}'
                 }
+            }
             stage('Delete Docker Image Locally In Jenkin Build Server')
             {
                 steps()
@@ -49,5 +51,6 @@ pipeline
                         sh 'docker rmi -f poonam2019/dockerpipeline:${buildNumber}'
                 }
             }
+        
         }
     }
