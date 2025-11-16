@@ -6,18 +6,16 @@ pipeline
         maven  'Maven_3.9.7'
     }
 
-    environment
-    {
-       buildNumber= "${BUILD_NUMBER}"
+     environment{
+       buildNumber = "${BUILD_NUMBER}"
     }
-    {
-        stages
-        {
+    
+        stages{
             stage('Git Checkout')
             {
                 steps()
                 {
-                    git branch: 'DevOpsBranch', Url: 'https://github.com/Poonam-devops1993/mvn-web-application.git'
+                    git branch: 'DevOpsBranch', url: 'https://github.com/Poonam-devops1993/mvn-web-application.git'
                 }
             }
         }   stage('Build Project')
@@ -53,4 +51,3 @@ pipeline
             }
         }
     }
-}
