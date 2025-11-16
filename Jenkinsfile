@@ -51,6 +51,19 @@ pipeline
                         sh 'docker rmi -f poonam2019/dockerpipeline:${buildNumber}'
                 }
             }
+            stage('Deploy Application to Deployment server')
+            {
+                steps()
+                {
+                    sshagent(['DeploymentServer_SSH'])
+                     {
+                           sh "ssh -o StrictHostKeyChecking=no ec2-user@13.233.124.110 docker rm -f mvnwebapplication || true"
+                           sh "ssh -o StrictHostKeyChecking=no ec2-user@13.233.124.110 docker run -d --name mvnwebapplication -p 8080:8080 poonam2019/dockerpipeline:${buildNumber}"
+                           
+                        
+                     }     
+                }
+            }
         
         }
     }
