@@ -1,6 +1,7 @@
 pipeline{
     agent any
-    tools{
+    tools
+    {
         maven '3.9.9'
     }
     environment
@@ -20,7 +21,8 @@ pipeline{
                 sh 'mvn clean package'
             }
         }
-        stage('Build Docker Image'){
+        stage('Build Docker Image')
+        {
             steps()
             {
                 sh 'docker build -t 000746846547.dkr.ecr.ap-south-1.amazonaws.com/login-application:${buildNumber} .'
