@@ -1,5 +1,12 @@
 pipeline{
     agent any
+    tools{
+        Maven 'Maven_3.9.9'
+    }
+    environment
+    {
+       buildNumber = "${BUILD_NUMBER}"
+    }
     stages{
         stage('Checkout code to jenkins from github'){
             steps()
@@ -11,6 +18,12 @@ pipeline{
             steps()
             {
                 sh 'mvn clean package'
+            }
+        }
+        stage('Build Docker Image'){
+            steps()
+            {
+                sh 'docker build -t 000746846547.dkr.ecr.ap-south-1.amazonaws.com/login-application:${buildNumber} .'
             }
         }
     }
